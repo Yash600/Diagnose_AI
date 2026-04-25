@@ -6,7 +6,7 @@ import {ClerkProvider} from "@clerk/nextjs";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { Toaster } from 'sonner';
-export const metadata = {
+export const metadata: Metadata = {
     title: 'Diagnose AI',
     description: 'AI powered code analysis tool',
     icons: [{ rel: 'icon', url: '/logo.png' }]  
