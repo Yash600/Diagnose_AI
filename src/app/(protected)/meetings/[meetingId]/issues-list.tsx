@@ -1,16 +1,12 @@
 'use client'
-
 type Props = {
     meetingId: string
 }
-
-import { AlertDialogHeader } from '@/components/ui/alert-dialog'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { api, type RouterOutputs } from '@/trpc/react'
-import { Dialog } from '@base-ui/react'
 import { VideoIcon } from 'lucide-react'
-import { Button } from 'node_modules/@base-ui/react/esm/toolbar/index.parts'
+import { Button } from '@/components/ui/button'  // ✅ correct import
 import React from 'react'
 
 const IssuesList = ({ meetingId }: Props) => {
@@ -29,20 +25,19 @@ const IssuesList = ({ meetingId }: Props) => {
                             <VideoIcon className='h-6 w-6' />
                         </div>
                         <h1>
-                            <div className='text-sm leading-6 text-gray-600'> '>
-                                Meeting On {""}{meeting.createdAt.toLocaleDateString()}
+                            <div className='text-sm leading-6 text-gray-600'>
+                                Meeting On {meeting.createdAt.toLocaleDateString()}
                             </div>
                             <div className='mt-1 text-base font-semibold leading-6 text-gray-900'>
-                                {meeting.name}
+                                {meeting.name}  {/* ✅ fixed */}
                             </div>
                         </h1>
                     </div>
                 </div>
-
                 <div className='h-4'></div>
                 <div className='grid grid-cols-1 gap-2 sm:grid-cols-3'>
-                    {meeting.issues.map((issue) => (
-
+                    {meeting.issues.map((issue) => (  // ✅ fixed
+                        <IssueCard key={issue.id} issue={issue} />
                     ))}
                 </div>
             </div>
@@ -74,7 +69,6 @@ function IssueCard({ issue }: { issue: NonNullable<RouterOutputs['project']['get
                         <p className='font-medium italic leading-relaxed text-gray-900'>
                             {issue.summary}
                         </p>
-
                     </blockquote>
                 </DialogContent>
             </Dialog>
@@ -95,7 +89,6 @@ function IssueCard({ issue }: { issue: NonNullable<RouterOutputs['project']['get
                 </CardContent>
             </Card>
         </>
-        
     )
 }
 
