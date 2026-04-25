@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from 'next/dynamic'  // ✅ add this
 import useProject from "@/hooks/use-project";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
