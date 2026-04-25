@@ -121,11 +121,95 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  imageUrl: 'imageUrl',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  password: 'password',
+  credits: 'credits'
+};
+
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  githubUrl: 'githubUrl',
+  deletedAt: 'deletedAt'
+};
+
+exports.Prisma.UserToProjectScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  projectId: 'projectId'
+};
+
+exports.Prisma.SourceCodeEmbeddingScalarFieldEnum = {
+  id: 'id',
+  sourceCode: 'sourceCode',
+  fileName: 'fileName',
+  summary: 'summary',
+  projectId: 'projectId'
+};
+
+exports.Prisma.MeetingScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  meetingUrl: 'meetingUrl',
+  projectId: 'projectId',
+  status: 'status'
+};
+
+exports.Prisma.IssueScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  start: 'start',
+  end: 'end',
+  gist: 'gist',
+  headline: 'headline',
+  summary: 'summary',
+  meetingId: 'meetingId'
+};
+
+exports.Prisma.RazorpayTransactionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  credits: 'credits'
+};
+
+exports.Prisma.QuestionScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  question: 'question',
+  answer: 'answer',
+  fileReferences: 'fileReferences',
+  projectId: 'projectId',
+  userId: 'userId'
+};
+
+exports.Prisma.CommitScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId',
+  commitMessage: 'commitMessage',
+  commitHash: 'commitHash',
+  commitAuthorName: 'commitAuthorName',
+  commitAuthorAvatar: 'commitAuthorAvatar',
+  commitDate: 'commitDate',
+  summary: 'summary'
 };
 
 exports.Prisma.SortOrder = {
@@ -133,14 +217,41 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+exports.MeetingStatus = exports.$Enums.MeetingStatus = {
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED'
+};
 
 exports.Prisma.ModelName = {
-  Post: 'Post'
+  User: 'User',
+  Project: 'Project',
+  UserToProject: 'UserToProject',
+  SourceCodeEmbedding: 'SourceCodeEmbedding',
+  Meeting: 'Meeting',
+  Issue: 'Issue',
+  RazorpayTransaction: 'RazorpayTransaction',
+  Question: 'Question',
+  Commit: 'Commit'
 };
 
 /**

@@ -1,5 +1,12 @@
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
+export default async function HomePage() {
+  const { userId } = await auth();
 
-export default async function Home() {
-  return (<h1>Welcome to the Home Page</h1>)
+  if (userId) {
+    redirect("/sync-user");
+  }
+
+  redirect("/sign-in");
 }
