@@ -70,7 +70,8 @@ const CreatePage = () => {
         ? Math.round((progressData.processed / progressData.total) * 100)
         : 0
 
-    const hasEnoughCredits = checkCredits?.data.userCredits ? checkCredits.data.fileCount <= checkCredits.data.userCredits : false
+    const hasEnoughCredits = checkCredits?.data?.userCredits ? checkCredits.data.fileCount <= checkCredits.data.userCredits : true
+    
     return (
         <div className="flex items-center gap-12 h-full justify-center">
             <img src="/github.png" className="h-56 w-auto rounded-l-full" />
@@ -91,15 +92,13 @@ const CreatePage = () => {
                     <div className="h-2"></div>
                     <Input {...register("githubToken")} placeholder="Github Token (Optional)" />
                     {!!checkCredits.data && (
-                        <>
-                            <div className="mt-4 bg-orange-50 px-4 py-2 rounded-md border border-orange-200 text-orange-700">
-                                <div className="flex items-center gap-2">
-                                    <Info className="size-4"/>
-                                    <p className="text-sm">You will be charged <strong>{checkCredits.data?.fileCount}</strong> credits for this repository.</p>
-                                </div>
-                                <p className="text-sm text-blue-600 ml-6">You have <strong>{checkCredits.data?.userCredits}</strong> credits remaining.</p>
+                        <div className="mt-4 bg-orange-50 px-4 py-2 rounded-md border border-orange-200 text-orange-700">
+                            <div className="flex items-center gap-2">
+                                <Info className="size-4"/>
+                                <p className="text-sm">You will be charged <strong>{checkCredits.data?.fileCount ?? 0}</strong> credits for this repository.</p>
                             </div>
-                        </>
+                            <p className="text-sm text-blue-600 ml-6">You have <strong>{checkCredits.data?.userCredits ?? 0}</strong> credits remaining.</p>
+                        </div>
                     )}
                     <div className="h-4"></div>
                     <Button type="submit" disabled={createProject.isPending || checkCredits.isPending}>
