@@ -11,9 +11,14 @@ import { toast } from "sonner";
 
 const MeetingPage = () => {
     const { projectId } = useProject()
-    const { data: meetings, isLoading } = api.project.getMeetings.useQuery({ projectId }, {
-        refetchInterval: 4000
-    })
+    
+    const { data: meetings, isLoading } = api.project.getMeetings.useQuery(
+        { projectId },
+        { 
+            enabled: !!projectId,  // ✅ only fetch when projectId is available
+            refetchInterval: 4000 
+        }
+    )
     const deleteMeeting = api.project.deleteMeeting.useMutation()
     const refetch = useReFetch()
 
