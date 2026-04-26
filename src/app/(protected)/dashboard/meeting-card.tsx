@@ -43,7 +43,7 @@ const MeetingCard = () => {
                     onSuccess: (meeting) => {
                         toast.success("Meeting uploaded!")
                         router.push('/meetings')
-                        processMeeting.mutateAsync({meetingUrl: downloadURL, meetingId: meeting.id, projectId: project.id})
+                        processMeeting.mutateAsync({meetingUrl: url, meetingId: meeting.id, projectId: project.id})
                     },
                     onError: (e) => {
                         console.error(e)

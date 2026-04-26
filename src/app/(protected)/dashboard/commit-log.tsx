@@ -9,7 +9,7 @@ import { ExternalLink } from 'lucide-react'
 
 const CommitLog = () => {
     const {projectId, project} = useProject()
-    const {data: commits} = api.project.getCommits.useQuery({projectId})
+    const {data: commits} = api.project.getCommits.useQuery({projectId}, { enabled: !!projectId })
     return (
         <>
             <ul className='space-y-6'>
