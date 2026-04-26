@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { api, type RouterOutputs } from '@/trpc/react'
 import { VideoIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'  // ✅ correct import
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
 const IssuesList = ({ meetingId }: Props) => {
@@ -14,8 +14,8 @@ const IssuesList = ({ meetingId }: Props) => {
         refetchInterval: 4000
     })
     if (isLoading || !meeting) {
-        return <div>Loading...</div>        
-    }
+        return <div>Loading...</div>
+    } 
     return (
         <>
             <div className='p-8'>
@@ -29,14 +29,14 @@ const IssuesList = ({ meetingId }: Props) => {
                                 Meeting On {meeting.createdAt.toLocaleDateString()}
                             </div>
                             <div className='mt-1 text-base font-semibold leading-6 text-gray-900'>
-                                {meeting.name}  {/* ✅ fixed */}
+                                {meeting.name}
                             </div>
                         </h1>
                     </div>
                 </div>
                 <div className='h-4'></div>
                 <div className='grid grid-cols-1 gap-2 sm:grid-cols-3'>
-                    {meeting.issues.map((issue) => (  // ✅ fixed
+                    {meeting.issues.map((issue) => (
                         <IssueCard key={issue.id} issue={issue} />
                     ))}
                 </div>
@@ -52,16 +52,12 @@ function IssueCard({ issue }: { issue: NonNullable<RouterOutputs['project']['get
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>
-                            {issue.gist}
-                        </DialogTitle>
+                        <DialogTitle>{issue.gist}</DialogTitle>
                         <DialogDescription>
                             {issue.createdAt.toLocaleDateString()}
                         </DialogDescription>
                     </DialogHeader>
-                    <p className='text-gray-600'>
-                        {issue.headline}
-                    </p>
+                    <p className='text-gray-600'>{issue.headline}</p>
                     <blockquote className='mt-2 border-l-4 border-gray-300 bg-gray-50 p-4'>
                         <span className='text-sm text-gray-600'>
                             {issue.start} - {issue.end}
@@ -74,18 +70,12 @@ function IssueCard({ issue }: { issue: NonNullable<RouterOutputs['project']['get
             </Dialog>
             <Card className='relative'>
                 <CardHeader>
-                    <CardTitle className='text-xl'>
-                        {issue.gist}
-                    </CardTitle>
+                    <CardTitle className='text-xl'>{issue.gist}</CardTitle>
                     <div className='border-b'></div>
-                    <CardDescription>
-                        {issue.headline}
-                    </CardDescription>
+                    <CardDescription>{issue.headline}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button onClick={() => setOpen(true)}>
-                        Details
-                    </Button>
+                    <Button onClick={() => setOpen(true)}>Details</Button>
                 </CardContent>
             </Card>
         </>
